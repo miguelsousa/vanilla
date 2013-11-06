@@ -1,0 +1,546 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>List &mdash; Vanilla 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Vanilla 0.1 documentation" href="../index.html" />
+    <link rel="next" title="ImageView" href="ImageView.html" />
+    <link rel="prev" title="VerticalLine" href="VerticalLine.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="ImageView.html" title="ImageView"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="VerticalLine.html" title="VerticalLine"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Vanilla 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-vanilla">
+<span id="list"></span><h1>List<a class="headerlink" href="#module-vanilla" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="vanilla.List">
+<em class="property">class </em><tt class="descclassname">vanilla.</tt><tt class="descname">List</tt><big>(</big><em>posSize</em>, <em>items</em>, <em>dataSource=None</em>, <em>columnDescriptions=None</em>, <em>showColumnTitles=True</em>, <em>selectionCallback=None</em>, <em>doubleClickCallback=None</em>, <em>editCallback=None</em>, <em>enableDelete=False</em>, <em>enableTypingSensitivity=False</em>, <em>allowsMultipleSelection=True</em>, <em>allowsEmptySelection=True</em>, <em>drawVerticalLines=False</em>, <em>drawHorizontalLines=False</em>, <em>autohidesScrollers=True</em>, <em>drawFocusRing=True</em>, <em>rowHeight=17.0</em>, <em>selfDropSettings=None</em>, <em>selfWindowDropSettings=None</em>, <em>selfDocumentDropSettings=None</em>, <em>selfApplicationDropSettings=None</em>, <em>otherApplicationDropSettings=None</em>, <em>dragSettings=None</em><big>)</big><a class="headerlink" href="#vanilla.List" title="Permalink to this definition">¶</a></dt>
+<dd><p>A control that shows a list of items. These lists can contain one or more columns.</p>
+<p>A single column example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">vanilla</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">class</span> <span class="nc">ListDemo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">Window</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="o">.</span><span class="n">myList</span> <span class="o">=</span> <span class="n">List</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">0</span><span class="p">),</span> <span class="p">[</span><span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="s">&quot;B&quot;</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">],</span>
+                     <span class="n">selectionCallback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">selectionCallback</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">selectionCallback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sender</span><span class="p">):</span>
+        <span class="k">print</span> <span class="n">sender</span><span class="o">.</span><span class="n">getSelection</span><span class="p">()</span>
+
+<span class="n">ListDemo</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>A mutliple column example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">vanilla</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">class</span> <span class="nc">ListDemo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">Window</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="o">.</span><span class="n">myList</span> <span class="o">=</span> <span class="n">List</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">0</span><span class="p">),</span>
+                     <span class="p">[{</span><span class="s">&quot;One&quot;</span><span class="p">:</span> <span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="s">&quot;Two&quot;</span><span class="p">:</span> <span class="s">&quot;a&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s">&quot;One&quot;</span><span class="p">:</span> <span class="s">&quot;B&quot;</span><span class="p">,</span> <span class="s">&quot;Two&quot;</span><span class="p">:</span> <span class="s">&quot;b&quot;</span><span class="p">}],</span>
+                     <span class="n">columnDescriptions</span><span class="o">=</span><span class="p">[{</span><span class="s">&quot;title&quot;</span><span class="p">:</span> <span class="s">&quot;One&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s">&quot;title&quot;</span><span class="p">:</span> <span class="s">&quot;Two&quot;</span><span class="p">}],</span>
+                     <span class="n">selectionCallback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">selectionCallback</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">selectionCallback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sender</span><span class="p">):</span>
+        <span class="k">print</span> <span class="n">sender</span><span class="o">.</span><span class="n">getSelection</span><span class="p">()</span>
+
+<span class="n">ListDemo</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>List objects behave like standard Python lists. For xample, given this List::</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="o">.</span><span class="n">myList</span> <span class="o">=</span> <span class="n">List</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="p">[</span><span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="s">&quot;B&quot;</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>The following Python list methods work::</p>
+<div class="highlight-python"><pre># Getting the length of the List.
+&gt;&gt;&gt; len(self.w.myList)
+3
+
+# Retrieving an item or items from a List.
+&gt;&gt;&gt; self.w.myList[1]
+"B"
+&gt;&gt;&gt; self.w.myList[:2]
+["A", "B"]
+
+# Setting an item in a List.
+&gt;&gt;&gt; self.w.myList[1] = "XYZ"
+&gt;&gt;&gt; self.w.myList.get()
+["A", "XYZ", "C"]
+
+# Deleting an item at an index in a List.
+&gt;&gt;&gt; del self.w.myList[1]
+&gt;&gt;&gt; self.w.myList.get()
+["A", "C"]
+
+# Appending an item to a List.
+&gt;&gt;&gt; self.w.myList.append("Z")
+&gt;&gt;&gt; self.w.myList.get()
+["A", "B", "C", "Z"]
+
+# Removing the first occurance of an item in a List.
+&gt;&gt;&gt; self.w.myList.remove("A")
+&gt;&gt;&gt; self.w.myList.get()
+["B", "C"]
+
+# Getting the index for the first occurance of an item in a List.
+&gt;&gt;&gt; self.w.myList.index("B")
+1
+
+# Inserting an item into a List.
+&gt;&gt;&gt; self.w.myList.insert(1, "XYZ")
+&gt;&gt;&gt; self.w.myList.get()
+["A", "XYZ", "B", "C"]
+
+# Extending a List.
+&gt;&gt;&gt; self.w.myList.extend(["X", "Y", "Z"])
+&gt;&gt;&gt; self.w.myList.get()
+["A", "B", "C", "X", "Y", "Z"]
+
+# Iterating over a List.
+&gt;&gt;&gt; for i in self.w.myList:
+&gt;&gt;&gt;     i
+"A"
+"B"
+"C"</pre>
+</div>
+<p><strong>posSize</strong> Tuple of form <em>(left, top, width, height)</em> representing the
+position and size of the list.</p>
+<p><strong>items</strong> The items to be displayed in the list. In the case of multiple
+column lists, this should be a list of dictionaries with the data for
+each column keyed by the column key as defined in columnDescriptions.
+If you intend to use a dataSource, <em>items</em> must be <em>None</em>.</p>
+<p><strong>dataSource</strong> A Cocoa object supporting the <em>NSTableDataSource</em>
+protocol. If <em>dataSource</em> is given, <em>items</em> must be <em>None</em>.</p>
+<p><strong>columnDescriptions</strong> An ordered list of dictionaries describing the
+columns. This is only necessary for multiple column lists.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="71%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><em>&#8220;title&#8221;</em></td>
+<td>The title to appear in the column header.</td>
+</tr>
+<tr class="row-even"><td><em>&#8220;key&#8221;</em> (optional)</td>
+<td>The key from which this column should get
+its data from each dictionary in <em>items</em>. If
+nothing is given, the key will be the string
+given in <em>title</em>.</td>
+</tr>
+<tr class="row-odd"><td><em>&#8220;formatter&#8221;</em> (optional)</td>
+<td>An <cite>NSFormatter</cite> &lt;<a class="reference external" href="http://tinyurl.com/NSFormatter">http://tinyurl.com/NSFormatter</a>&gt;`_
+for cntrolling the display and input of the
+column&#8217;s cells.</td>
+</tr>
+<tr class="row-even"><td><em>&#8220;cell&#8221;</em> (optional)</td>
+<td>A cell type to be displayed in the column.
+If nothing is given, a text cell is used.</td>
+</tr>
+<tr class="row-odd"><td><em>&#8220;editable&#8221;</em> (optional)</td>
+<td>Enable or disable editing in the column. If
+nothing is given, it will follow the
+editability of the rest of the list.</td>
+</tr>
+<tr class="row-even"><td><em>&#8220;width&#8221;</em> (optional)</td>
+<td>The width of the column. In OS 10.3 and
+lower the width must be defined for <em>all</em>
+columns if the width is defined for one
+column.</td>
+</tr>
+<tr class="row-odd"><td><em>&#8220;typingSensitive&#8221;</em> (optional)</td>
+<td>A boolean representing that this column
+should be the column that responds to user
+key input. Only one column can be flagged as
+True. If no column is flagged, the first
+column will automatically be flagged.</td>
+</tr>
+<tr class="row-even"><td><em>binding</em> (optional)</td>
+<td>A string indicating which <a class="reference external" href="http://tinyurl.com/CocoaBindings">binding object</a>
+the column&#8217;s cell should be bound to. By
+default, this is &#8220;value.&#8221; You should only
+override this in very specific cases.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>showColumnTitles</strong> Boolean representing if the column titles should be shown or not.
+Column titles will not be shown in single column lists.</p>
+<p><strong>selectionCallback</strong> Callback to be called when the selection in the list changes.</p>
+<p><strong>doubleClickCallback</strong> Callback to be called when an item is double clicked.</p>
+<p><strong>editCallback</strong> Callback to be called after an item has been edited.</p>
+<p><strong>enableDelete</strong> A boolean representing if items in the list can be deleted via the interface.</p>
+<p><strong>enableTypingSensitivity</strong> A boolean representing if typing in the list will jump to the
+closest match as the entered keystrokes. <em>Available only in single column lists.</em></p>
+<p><strong>allowsMultipleSelection</strong> A boolean representing if the list allows more than one item to be selected.</p>
+<p><strong>allowsEmptySelection</strong> A boolean representing if the list allows zero items to be selected.</p>
+<p><strong>drawVerticalLines</strong> Boolean representing if vertical lines should be drawn in the list.</p>
+<p><strong>drawHorizontalLines</strong> Boolean representing if horizontal lines should be drawn in the list.</p>
+<p><strong>drawFocusRing</strong> Boolean representing if the standard focus ring should be drawn when the list is selected.</p>
+<p><strong>rowHeight</strong> The height of the rows in the list.</p>
+<p><strong>autohidesScrollers</strong> Boolean representing if scrollbars should automatically be hidden if possible.</p>
+<p><strong>selfDropSettings</strong> A dictionary defining the drop settings when the source of the drop
+is this list. The dictionary form is described below.</p>
+<p><strong>selfWindowDropSettings</strong> A dictionary defining the drop settings when the source of the drop
+is contained the same document as this list. The dictionary form is described below.</p>
+<p><strong>selfDocumentDropSettings</strong> A dictionary defining the drop settings when the source of the drop
+is contained the same window as this list. The dictionary form is described below.</p>
+<p><strong>selfApplicationDropSettings</strong> A dictionary defining the drop settings when the source of the drop
+is contained the same application as this list. The dictionary form is described below.</p>
+<p><strong>otherApplicationDropSettings</strong> A dictionary defining the drop settings when the source of the drop
+is contained an application other than the one that contains this list. The dictionary form is described below.</p>
+<p>The drop settings dictionaries should be of this form:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="34%" />
+<col width="66%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><em>type</em></td>
+<td>A single drop type indicating what drop types the list accepts.
+For example, NSFilenamesPboardType or &#8220;MyCustomPboardType&#8221;.</td>
+</tr>
+<tr class="row-even"><td><em>operation</em> (optional)</td>
+<td>A &#8220;drag operation &lt;<a class="reference external" href="http://tinyurl.com/NSDraggingIn">http://tinyurl.com/NSDraggingIn</a>&gt;`_ that
+the list accepts. The default is <em>NSDragOperationCopy</em>.</td>
+</tr>
+<tr class="row-odd"><td><em>allowDropBetweenRows</em> (optional)</td>
+<td>A boolean indicating if the list accepts drops between rows.
+The default is True.</td>
+</tr>
+<tr class="row-even"><td><em>allowDropOnRow</em> (optional)</td>
+<td>A boolean indicating if the list accepts drops on rows.
+The default is False.</td>
+</tr>
+<tr class="row-odd"><td><em>callback</em></td>
+<td>Callback to be called when a drop is proposed and when a drop
+is to occur. This method should return a boolean representing
+if the drop is acceptable or not. This method must accept <em>sender</em>
+and <em>dropInfo</em> arguments. The _dropInfo_ will be a dictionary as
+described below.</td>
+</tr>
+</tbody>
+</table>
+<p>The dropInfo dictionary passed to drop callbacks will be of this form:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="87%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><em>data</em></td>
+<td>The data proposed for the drop. This data will be of the type specified by dropDataFormat.</td>
+</tr>
+<tr class="row-even"><td><em>rowIndex</em></td>
+<td>The row where the drop is proposed.</td>
+</tr>
+<tr class="row-odd"><td><em>source</em></td>
+<td>The source from which items are being dragged. If this object is wrapped by Vanilla, the
+Vanilla object will be passed as the source.</td>
+</tr>
+<tr class="row-even"><td><em>dropOnRow</em></td>
+<td>A boolean representing if the row is being dropped on. If this is False, the drop should
+occur between rows.</td>
+</tr>
+<tr class="row-odd"><td><em>isProposal</em></td>
+<td>A boolean representing if this call is simply proposing the drop or if it is time to
+accept the drop.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="vanilla.List.enable">
+<tt class="descname">enable</tt><big>(</big><em>onOff</em><big>)</big><a class="headerlink" href="#vanilla.List.enable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable or disable the object. <strong>onOff</strong> should be a boolean.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.List.get">
+<tt class="descname">get</tt><big>(</big><big>)</big><a class="headerlink" href="#vanilla.List.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the list of items in the list.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.List.getNSScrollView">
+<tt class="descname">getNSScrollView</tt><big>(</big><big>)</big><a class="headerlink" href="#vanilla.List.getNSScrollView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the <em>NSScrollView</em> that this object wraps.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.List.getNSTableView">
+<tt class="descname">getNSTableView</tt><big>(</big><big>)</big><a class="headerlink" href="#vanilla.List.getNSTableView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the <em>NSTableView</em> that this object wraps.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.List.getPosSize">
+<tt class="descname">getPosSize</tt><big>(</big><big>)</big><a class="headerlink" href="#vanilla.List.getPosSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>The position and size of the object as a tuple of form <em>(left, top, width, height)</em>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.List.getSelection">
+<tt class="descname">getSelection</tt><big>(</big><big>)</big><a class="headerlink" href="#vanilla.List.getSelection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list of indexes of selected items in the list.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.List.isVisible">
+<tt class="descname">isVisible</tt><big>(</big><big>)</big><a class="headerlink" href="#vanilla.List.isVisible" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a bool indicting if the object is visible or not.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.List.move">
+<tt class="descname">move</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#vanilla.List.move" title="Permalink to this definition">¶</a></dt>
+<dd><p>Move the object by <strong>x</strong> units and <strong>y</strong> units.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.List.resize">
+<tt class="descname">resize</tt><big>(</big><em>width</em>, <em>height</em><big>)</big><a class="headerlink" href="#vanilla.List.resize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change the size of the object to <strong>width</strong> and <strong>height</strong>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.List.scrollToSelection">
+<tt class="descname">scrollToSelection</tt><big>(</big><big>)</big><a class="headerlink" href="#vanilla.List.scrollToSelection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scroll the selected rows to visible.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.List.set">
+<tt class="descname">set</tt><big>(</big><em>items</em><big>)</big><a class="headerlink" href="#vanilla.List.set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the items in the list.</p>
+<p><strong>items</strong> should follow the same format as described in the constructor.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.List.setPosSize">
+<tt class="descname">setPosSize</tt><big>(</big><em>posSize</em><big>)</big><a class="headerlink" href="#vanilla.List.setPosSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the postion and size of the object.</p>
+<p><strong>posSize</strong> A tuple of form <em>(left, top, width, height)</em>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.List.setSelection">
+<tt class="descname">setSelection</tt><big>(</big><em>selection</em><big>)</big><a class="headerlink" href="#vanilla.List.setSelection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the selected items in the list.</p>
+<p><strong>selection</strong> should be a list of indexes.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.List.show">
+<tt class="descname">show</tt><big>(</big><em>onOff</em><big>)</big><a class="headerlink" href="#vanilla.List.show" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show or hide the object.</p>
+<p><strong>onOff</strong> A boolean value representing if the object should be shown or not.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="list-item-cells">
+<h1>List Item Cells<a class="headerlink" href="#list-item-cells" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="vanilla.LevelIndicatorListCell">
+<tt class="descclassname">vanilla.</tt><tt class="descname">LevelIndicatorListCell</tt><big>(</big><em>style='discrete'</em>, <em>minValue=0</em>, <em>maxValue=10</em>, <em>warningValue=None</em>, <em>criticalValue=None</em>, <em>imagePath=None</em>, <em>imageNamed=None</em>, <em>imageObject=None</em><big>)</big><a class="headerlink" href="#vanilla.LevelIndicatorListCell" title="Permalink to this definition">¶</a></dt>
+<dd><p>An object that displays a level indicator in a List column.</p>
+<p><strong>This object should only be used in the *columnDescriptions* argument
+during the construction of a List.</strong>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">vanilla</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">class</span> <span class="nc">LevelIndicatorListCellDemo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">Window</span><span class="p">((</span><span class="mi">340</span><span class="p">,</span> <span class="mi">140</span><span class="p">))</span>
+         <span class="n">items</span> <span class="o">=</span> <span class="p">[</span>
+             <span class="p">{</span><span class="s">&quot;discrete&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s">&quot;continuous&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s">&quot;rating&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&quot;relevancy&quot;</span><span class="p">:</span> <span class="mi">9</span><span class="p">},</span>
+             <span class="p">{</span><span class="s">&quot;discrete&quot;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="s">&quot;continuous&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s">&quot;rating&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s">&quot;relevancy&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">},</span>
+             <span class="p">{</span><span class="s">&quot;discrete&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s">&quot;continuous&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s">&quot;rating&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s">&quot;relevancy&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">},</span>
+             <span class="p">{</span><span class="s">&quot;discrete&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s">&quot;continuous&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s">&quot;rating&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s">&quot;relevancy&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">},</span>
+             <span class="p">{</span><span class="s">&quot;discrete&quot;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s">&quot;continuous&quot;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="s">&quot;rating&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s">&quot;relevancy&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
+             <span class="p">{</span><span class="s">&quot;discrete&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s">&quot;continuous&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&quot;rating&quot;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s">&quot;relevancy&quot;</span><span class="p">:</span> <span class="mi">8</span><span class="p">},</span>
+         <span class="p">]</span>
+         <span class="n">columnDescriptions</span> <span class="o">=</span> <span class="p">[</span>
+             <span class="p">{</span><span class="s">&quot;title&quot;</span><span class="p">:</span> <span class="s">&quot;discrete&quot;</span><span class="p">,</span>
+             <span class="s">&quot;cell&quot;</span><span class="p">:</span> <span class="n">LevelIndicatorListCell</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s">&quot;discrete&quot;</span><span class="p">,</span> <span class="n">warningValue</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">criticalValue</span><span class="o">=</span><span class="mi">9</span><span class="p">)},</span>
+             <span class="p">{</span><span class="s">&quot;title&quot;</span><span class="p">:</span> <span class="s">&quot;continuous&quot;</span><span class="p">,</span> 
+             <span class="s">&quot;cell&quot;</span><span class="p">:</span> <span class="n">LevelIndicatorListCell</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s">&quot;continuous&quot;</span><span class="p">,</span> <span class="n">warningValue</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">criticalValue</span><span class="o">=</span><span class="mi">9</span><span class="p">)},</span>
+             <span class="p">{</span><span class="s">&quot;title&quot;</span><span class="p">:</span> <span class="s">&quot;rating&quot;</span><span class="p">,</span>
+             <span class="s">&quot;cell&quot;</span><span class="p">:</span> <span class="n">LevelIndicatorListCell</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s">&quot;rating&quot;</span><span class="p">,</span> <span class="n">maxValue</span><span class="o">=</span><span class="mi">6</span><span class="p">)},</span>
+             <span class="p">{</span><span class="s">&quot;title&quot;</span><span class="p">:</span> <span class="s">&quot;relevancy&quot;</span><span class="p">,</span>
+             <span class="s">&quot;cell&quot;</span><span class="p">:</span> <span class="n">LevelIndicatorListCell</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s">&quot;relevancy&quot;</span><span class="p">)},</span>
+         <span class="p">]</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="o">.</span><span class="n">list</span> <span class="o">=</span> <span class="n">List</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">0</span><span class="p">),</span> <span class="n">items</span><span class="o">=</span><span class="n">items</span><span class="p">,</span>
+                        <span class="n">columnDescriptions</span><span class="o">=</span><span class="n">columnDescriptions</span><span class="p">)</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
+
+<span class="n">LevelIndicatorListCellDemo</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>style</strong> The style of the level indicator. The options are:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&#8220;continuous&#8221;</td>
+<td>A continuous bar.</td>
+</tr>
+<tr class="row-even"><td>&#8220;discrete&#8221;</td>
+<td>A segmented bar.</td>
+</tr>
+<tr class="row-odd"><td>&#8220;rating&#8221;</td>
+<td>A row of stars. Similar to the rating
+indicator in iTunes.</td>
+</tr>
+<tr class="row-even"><td>&#8220;relevancy&#8221;</td>
+<td>A row of lines. Similar to the search
+result relevancy indicator in Mail.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>minValue</strong> The minimum value allowed by the level indicator.</p>
+<p><strong>maxValue</strong> The maximum value allowed by the level indicator.</p>
+<p><strong>warningValue</strong> The value at which the filled portions of the
+level indicator should display the warning color. Applies only to
+discrete and continuous level indicators.</p>
+<p><strong>criticalValue</strong> The value at which the filled portions of the
+level indicator should display the critical color. Applies only to
+discrete and continuous level indicators.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="vanilla.CheckBoxListCell">
+<tt class="descclassname">vanilla.</tt><tt class="descname">CheckBoxListCell</tt><big>(</big><em>title=None</em><big>)</big><a class="headerlink" href="#vanilla.CheckBoxListCell" title="Permalink to this definition">¶</a></dt>
+<dd><p>An object that displays a check box in a List column.</p>
+<p><strong>This object should only be used in the *columnDescriptions*
+argument during the construction of a List.</strong></p>
+<p><strong>title</strong> The title to be set in <em>all</em> items in the List column.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="vanilla.SliderListCell">
+<tt class="descclassname">vanilla.</tt><tt class="descname">SliderListCell</tt><big>(</big><em>minValue=0</em>, <em>maxValue=100</em><big>)</big><a class="headerlink" href="#vanilla.SliderListCell" title="Permalink to this definition">¶</a></dt>
+<dd><p>An object that displays a slider in a List column.</p>
+<p><strong>This object should only be used in the *columnDescriptions*
+argument during the construction of a List.</strong></p>
+<p><strong>minValue</strong> The minimum value for the slider.</p>
+<p><strong>maxValue</strong> The maximum value for the slider.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">List</a></li>
+<li><a class="reference internal" href="#list-item-cells">List Item Cells</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="VerticalLine.html"
+                        title="previous chapter">VerticalLine</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="ImageView.html"
+                        title="next chapter">ImageView</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/objects/List.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="ImageView.html" title="ImageView"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="VerticalLine.html" title="VerticalLine"
+             >previous</a> |</li>
+        <li><a href="../index.html">Vanilla 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2009, Tal Leming, Just van Rossum.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

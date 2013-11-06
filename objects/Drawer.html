@@ -1,0 +1,244 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Drawer &mdash; Vanilla 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Vanilla 0.1 documentation" href="../index.html" />
+    <link rel="next" title="Group" href="Group.html" />
+    <link rel="prev" title="Sheet" href="Sheet.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="Group.html" title="Group"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="Sheet.html" title="Sheet"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Vanilla 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-vanilla">
+<span id="drawer"></span><h1>Drawer<a class="headerlink" href="#module-vanilla" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="vanilla.Drawer">
+<em class="property">class </em><tt class="descclassname">vanilla.</tt><tt class="descname">Drawer</tt><big>(</big><em>size</em>, <em>parentWindow</em>, <em>minSize=None</em>, <em>maxSize=None</em>, <em>preferredEdge='left'</em>, <em>forceEdge=False</em>, <em>leadingOffset=20</em>, <em>trailingOffset=20</em><big>)</big><a class="headerlink" href="#vanilla.Drawer" title="Permalink to this definition">¶</a></dt>
+<dd><p>A drawer attached to a window. Drawers are capable of containing controls.</p>
+<p>To add a control to a drawer, simply set it as an attribute of the drawer.:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">vanilla</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">class</span> <span class="nc">DrawerDemo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">Window</span><span class="p">((</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="o">.</span><span class="n">button</span> <span class="o">=</span> <span class="n">Button</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="s">&quot;Toggle Drawer&quot;</span><span class="p">,</span>
+                            <span class="n">callback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">toggleDrawer</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">d</span> <span class="o">=</span> <span class="n">Drawer</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span> <span class="mi">150</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">d</span><span class="o">.</span><span class="n">textBox</span> <span class="o">=</span> <span class="n">TextBox</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">),</span>
+                            <span class="s">&quot;This is a drawer.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">d</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">toggleDrawer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sender</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">d</span><span class="o">.</span><span class="n">toggle</span><span class="p">()</span>
+
+<span class="n">DrawerDemo</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>No special naming is required for the attributes. However, each attribute must have a unique name.</p>
+<p><strong>size</strong> Tuple of form <em>(width, height)</em> representing the size of the drawer.</p>
+<p><strong>parentWindow</strong> The window that the drawer should be attached to.</p>
+<p><strong>minSize</strong> Tuple of form <em>(width, height)</em> representing the minimum size of the drawer.</p>
+<p><strong>maxSize</strong> Tuple of form <em>(width, height)</em> representing the maximum size of the drawer.</p>
+<p><strong>preferredEdge</strong> The preferred edge of the window that the drawe should be attached to. If the
+drawer cannot be opened on the preferred edge, it will be opened on the opposite edge. The options are:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&#8220;left&#8221;</td>
+</tr>
+<tr class="row-even"><td>&#8220;right&#8221;</td>
+</tr>
+<tr class="row-odd"><td>&#8220;top&#8221;</td>
+</tr>
+<tr class="row-even"><td>&#8220;bottom&#8221;</td>
+</tr>
+</tbody>
+</table>
+<p><strong>forceEdge</strong> Boolean representing if the drawer should <em>always</em> be opened on the preferred edge.</p>
+<p><strong>leadingOffset</strong> Distance between the top or left edge of the drawer and the parent window.</p>
+<p><strong>trailingOffset</strong> Distance between the bottom or right edge of the drawer and the parent window.</p>
+<dl class="method">
+<dt id="vanilla.Drawer.close">
+<tt class="descname">close</tt><big>(</big><big>)</big><a class="headerlink" href="#vanilla.Drawer.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close the drawer.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.Drawer.enable">
+<tt class="descname">enable</tt><big>(</big><em>onOff</em><big>)</big><a class="headerlink" href="#vanilla.Drawer.enable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable or disable the object. <strong>onOff</strong> should be a boolean.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.Drawer.getNSDrawer">
+<tt class="descname">getNSDrawer</tt><big>(</big><big>)</big><a class="headerlink" href="#vanilla.Drawer.getNSDrawer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the <em>NSDrawer</em> that this object wraps.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.Drawer.getPosSize">
+<tt class="descname">getPosSize</tt><big>(</big><big>)</big><a class="headerlink" href="#vanilla.Drawer.getPosSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>The position and size of the object as a tuple of form <em>(left, top, width, height)</em>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.Drawer.isOpen">
+<tt class="descname">isOpen</tt><big>(</big><big>)</big><a class="headerlink" href="#vanilla.Drawer.isOpen" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True if the drawer is open, False if it is closed.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.Drawer.isVisible">
+<tt class="descname">isVisible</tt><big>(</big><big>)</big><a class="headerlink" href="#vanilla.Drawer.isVisible" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a bool indicting if the object is visible or not.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.Drawer.move">
+<tt class="descname">move</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#vanilla.Drawer.move" title="Permalink to this definition">¶</a></dt>
+<dd><p>Move the object by <strong>x</strong> units and <strong>y</strong> units.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.Drawer.open">
+<tt class="descname">open</tt><big>(</big><big>)</big><a class="headerlink" href="#vanilla.Drawer.open" title="Permalink to this definition">¶</a></dt>
+<dd><p>Open the drawer.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.Drawer.resize">
+<tt class="descname">resize</tt><big>(</big><em>width</em>, <em>height</em><big>)</big><a class="headerlink" href="#vanilla.Drawer.resize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change the size of the object to <strong>width</strong> and <strong>height</strong>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.Drawer.setPosSize">
+<tt class="descname">setPosSize</tt><big>(</big><em>posSize</em><big>)</big><a class="headerlink" href="#vanilla.Drawer.setPosSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the postion and size of the object.</p>
+<p><strong>posSize</strong> A tuple of form <em>(left, top, width, height)</em>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.Drawer.show">
+<tt class="descname">show</tt><big>(</big><em>onOff</em><big>)</big><a class="headerlink" href="#vanilla.Drawer.show" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show or hide the object.</p>
+<p><strong>onOff</strong> A boolean value representing if the object should be shown or not.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.Drawer.toggle">
+<tt class="descname">toggle</tt><big>(</big><big>)</big><a class="headerlink" href="#vanilla.Drawer.toggle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Open the drawer if it is closed. Close it if it is open.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="Sheet.html"
+                        title="previous chapter">Sheet</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="Group.html"
+                        title="next chapter">Group</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/objects/Drawer.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="Group.html" title="Group"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="Sheet.html" title="Sheet"
+             >previous</a> |</li>
+        <li><a href="../index.html">Vanilla 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2009, Tal Leming, Just van Rossum.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,237 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>RadioGroup &mdash; Vanilla 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Vanilla 0.1 documentation" href="../index.html" />
+    <link rel="next" title="Slider" href="Slider.html" />
+    <link rel="prev" title="PopUpButton" href="PopUpButton.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="Slider.html" title="Slider"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="PopUpButton.html" title="PopUpButton"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Vanilla 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-vanilla">
+<span id="radiogroup"></span><h1>RadioGroup<a class="headerlink" href="#module-vanilla" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="vanilla.RadioGroup">
+<em class="property">class </em><tt class="descclassname">vanilla.</tt><tt class="descname">RadioGroup</tt><big>(</big><em>posSize</em>, <em>titles</em>, <em>isVertical=True</em>, <em>callback=None</em>, <em>sizeStyle='regular'</em><big>)</big><a class="headerlink" href="#vanilla.RadioGroup" title="Permalink to this definition">¶</a></dt>
+<dd><p>A collection of radio buttons.:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">vanilla</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">class</span> <span class="nc">RadioGroupDemo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">Window</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span> <span class="mi">60</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="o">.</span><span class="n">radioGroup</span> <span class="o">=</span> <span class="n">RadioGroup</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">40</span><span class="p">),</span>
+                                <span class="p">[</span><span class="s">&quot;Option 1&quot;</span><span class="p">,</span> <span class="s">&quot;Option 2&quot;</span><span class="p">],</span>
+                                <span class="n">callback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">radioGroupCallback</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">radioGroupCallback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sender</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;radio group edit!&quot;</span><span class="p">,</span> <span class="n">sender</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+
+<span class="n">RadioGroupDemo</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>posSize</strong> Tuple of form <em>(left, top, width, height)</em> representing
+the position and size of the radio group.</p>
+<p><strong>titles</strong> A list of titles to be shown next to the radio buttons.</p>
+<p><strong>isVertical</strong> Boolean representing if the radio group is
+vertical or horizontal.</p>
+<p><strong>callback</strong> The method to be caled when a radio button is selected.</p>
+<p><strong>sizeStyle</strong> A string representing the desired size style of the radio group.
+The options are:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&#8220;regular&#8221;</td>
+</tr>
+<tr class="row-even"><td>&#8220;small&#8221;</td>
+</tr>
+<tr class="row-odd"><td>&#8220;mini&#8221;</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="vanilla.RadioGroup.enable">
+<tt class="descname">enable</tt><big>(</big><em>onOff</em><big>)</big><a class="headerlink" href="#vanilla.RadioGroup.enable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable or disable the object. <strong>onOff</strong> should be a boolean.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.RadioGroup.get">
+<tt class="descname">get</tt><big>(</big><big>)</big><a class="headerlink" href="#vanilla.RadioGroup.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the index of the selected radio button.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.RadioGroup.getNSMatrix">
+<tt class="descname">getNSMatrix</tt><big>(</big><big>)</big><a class="headerlink" href="#vanilla.RadioGroup.getNSMatrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the <em>NSMatrix</em> that this object wraps.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.RadioGroup.getPosSize">
+<tt class="descname">getPosSize</tt><big>(</big><big>)</big><a class="headerlink" href="#vanilla.RadioGroup.getPosSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>The position and size of the object as a tuple of form <em>(left, top, width, height)</em>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.RadioGroup.getTitle">
+<tt class="descname">getTitle</tt><big>(</big><big>)</big><a class="headerlink" href="#vanilla.RadioGroup.getTitle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the control title.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.RadioGroup.isVisible">
+<tt class="descname">isVisible</tt><big>(</big><big>)</big><a class="headerlink" href="#vanilla.RadioGroup.isVisible" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a bool indicting if the object is visible or not.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.RadioGroup.move">
+<tt class="descname">move</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#vanilla.RadioGroup.move" title="Permalink to this definition">¶</a></dt>
+<dd><p>Move the object by <strong>x</strong> units and <strong>y</strong> units.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.RadioGroup.resize">
+<tt class="descname">resize</tt><big>(</big><em>width</em>, <em>height</em><big>)</big><a class="headerlink" href="#vanilla.RadioGroup.resize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change the size of the object to <strong>width</strong> and <strong>height</strong>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.RadioGroup.set">
+<tt class="descname">set</tt><big>(</big><em>index</em><big>)</big><a class="headerlink" href="#vanilla.RadioGroup.set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the index of the seleced radio button.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.RadioGroup.setPosSize">
+<tt class="descname">setPosSize</tt><big>(</big><em>posSize</em><big>)</big><a class="headerlink" href="#vanilla.RadioGroup.setPosSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the postion and size of the object.</p>
+<p><strong>posSize</strong> A tuple of form <em>(left, top, width, height)</em>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.RadioGroup.setTitle">
+<tt class="descname">setTitle</tt><big>(</big><em>title</em><big>)</big><a class="headerlink" href="#vanilla.RadioGroup.setTitle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the control title.</p>
+<p><strong>title</strong> A string representing the title.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.RadioGroup.show">
+<tt class="descname">show</tt><big>(</big><em>onOff</em><big>)</big><a class="headerlink" href="#vanilla.RadioGroup.show" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show or hide the object.</p>
+<p><strong>onOff</strong> A boolean value representing if the object should be shown or not.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="PopUpButton.html"
+                        title="previous chapter">PopUpButton</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="Slider.html"
+                        title="next chapter">Slider</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/objects/RadioGroup.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="Slider.html" title="Slider"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="PopUpButton.html" title="PopUpButton"
+             >previous</a> |</li>
+        <li><a href="../index.html">Vanilla 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2009, Tal Leming, Just van Rossum.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

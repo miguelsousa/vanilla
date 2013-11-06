@@ -1,0 +1,322 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>LevelIndicator &mdash; Vanilla 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Vanilla 0.1 documentation" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">Vanilla 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-vanilla">
+<span id="levelindicator"></span><h1>LevelIndicator<a class="headerlink" href="#module-vanilla" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="vanilla.LevelIndicator">
+<em class="property">class </em><tt class="descclassname">vanilla.</tt><tt class="descname">LevelIndicator</tt><big>(</big><em>posSize</em>, <em>style='discrete'</em>, <em>value=5</em>, <em>minValue=0</em>, <em>maxValue=10</em>, <em>warningValue=None</em>, <em>criticalValue=None</em>, <em>tickMarkPosition=None</em>, <em>minorTickMarkCount=None</em>, <em>majorTickMarkCount=None</em>, <em>callback=None</em><big>)</big><a class="headerlink" href="#vanilla.LevelIndicator" title="Permalink to this definition">¶</a></dt>
+<dd><p>A control which shows a value on a linear scale.:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">vanilla</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">class</span> <span class="nc">LevelIndicatorDemo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">Window</span><span class="p">((</span><span class="mi">200</span><span class="p">,</span> <span class="mi">68</span><span class="p">))</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="o">.</span><span class="n">discreteIndicator</span> <span class="o">=</span> <span class="n">LevelIndicator</span><span class="p">(</span>
+                    <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">18</span><span class="p">),</span> <span class="n">callback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">levelIndicatorCallback</span><span class="p">)</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="o">.</span><span class="n">continuousIndicator</span> <span class="o">=</span> <span class="n">LevelIndicator</span><span class="p">(</span>
+                    <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">18</span><span class="p">),</span> <span class="n">style</span><span class="o">=</span><span class="s">&quot;continuous&quot;</span><span class="p">,</span>
+                    <span class="n">callback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">levelIndicatorCallback</span><span class="p">)</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
+
+     <span class="k">def</span> <span class="nf">levelIndicatorCallback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sender</span><span class="p">):</span>
+         <span class="k">print</span> <span class="s">&quot;level indicator edit!&quot;</span><span class="p">,</span> <span class="n">sender</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+
+<span class="n">LevelIndicatorDemo</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>posSize</strong> Tuple of form <em>(left, top, width, height)</em> representing the position
+and size of the level indicator.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Standard Dimensions()</strong></td>
+</tr>
+<tr class="row-even"><td><em>discrete without ticks</em></td>
+</tr>
+<tr class="row-odd"><td>H | 18</td>
+</tr>
+<tr class="row-even"><td><em>discrete with minor ticks</em></td>
+</tr>
+<tr class="row-odd"><td>H | 22</td>
+</tr>
+<tr class="row-even"><td><em>discrete with major ticks</em></td>
+</tr>
+<tr class="row-odd"><td>H | 25</td>
+</tr>
+<tr class="row-even"><td><em>continuous without ticks</em></td>
+</tr>
+<tr class="row-odd"><td>H | 16</td>
+</tr>
+<tr class="row-even"><td><em>continuous with minor ticks</em></td>
+</tr>
+<tr class="row-odd"><td>H | 20</td>
+</tr>
+<tr class="row-even"><td><em>continuous with major ticks</em></td>
+</tr>
+<tr class="row-odd"><td>H | 23</td>
+</tr>
+</tbody>
+</table>
+<p><strong>style</strong> The style of the level indicator. The options are:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="42%" />
+<col width="58%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&#8220;continuous&#8221;</td>
+<td>A continuous bar.</td>
+</tr>
+<tr class="row-even"><td>&#8220;discrete&#8221;</td>
+<td>A segmented bar.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>value</strong> The initial value of the level indicator.</p>
+<p><strong>minValue</strong> The minimum value allowed by the level indicator.</p>
+<p><strong>maxValue</strong> The maximum value allowed by the level indicator.</p>
+<p><strong>warningValue</strong> The value at which the filled portions of the
+level indicator should display the warning color.</p>
+<p><strong>criticalValue</strong> The value at which the filled portions of the
+level indicator should display the critical color.</p>
+<p><strong>tickMarkPosition</strong> The position of the tick marks in relation
+to the level indicator. The options are:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&#8220;above&#8221;</td>
+</tr>
+<tr class="row-even"><td>&#8220;below&#8221;</td>
+</tr>
+</tbody>
+</table>
+<p><strong>minorTickMarkCount</strong> The number of minor tick marcks to be displayed
+on the level indicator. If <em>None</em> is given, no minor tick marks will be displayed.</p>
+<p><strong>majorTickMarkCount</strong> The number of major tick marcks to be displayed on the level
+indicator. If <em>None</em> is given, no major tick marks will be displayed.</p>
+<p><strong>callback</strong> The method to be called when the level indicator has been edited.
+If no callback is given, the level indicator will not be editable.</p>
+<dl class="method">
+<dt id="vanilla.LevelIndicator.enable">
+<tt class="descname">enable</tt><big>(</big><em>onOff</em><big>)</big><a class="headerlink" href="#vanilla.LevelIndicator.enable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable or disable the object. <strong>onOff</strong> should be a boolean.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.LevelIndicator.get">
+<tt class="descname">get</tt><big>(</big><big>)</big><a class="headerlink" href="#vanilla.LevelIndicator.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the value of the level indicator.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.LevelIndicator.getCriticalValue">
+<tt class="descname">getCriticalValue</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#vanilla.LevelIndicator.getCriticalValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the critical value of the level indicator.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.LevelIndicator.getMaxValue">
+<tt class="descname">getMaxValue</tt><big>(</big><big>)</big><a class="headerlink" href="#vanilla.LevelIndicator.getMaxValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the maximum of the level indicator.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.LevelIndicator.getMinValue">
+<tt class="descname">getMinValue</tt><big>(</big><big>)</big><a class="headerlink" href="#vanilla.LevelIndicator.getMinValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the minimum value of the level indicator.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.LevelIndicator.getNSLevelIndicator">
+<tt class="descname">getNSLevelIndicator</tt><big>(</big><big>)</big><a class="headerlink" href="#vanilla.LevelIndicator.getNSLevelIndicator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the <em>NSLevelIndicator</em> that this object wraps.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.LevelIndicator.getPosSize">
+<tt class="descname">getPosSize</tt><big>(</big><big>)</big><a class="headerlink" href="#vanilla.LevelIndicator.getPosSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>The position and size of the object as a tuple of form <em>(left, top, width, height)</em>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.LevelIndicator.getTitle">
+<tt class="descname">getTitle</tt><big>(</big><big>)</big><a class="headerlink" href="#vanilla.LevelIndicator.getTitle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the control title.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.LevelIndicator.getWarningValue">
+<tt class="descname">getWarningValue</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#vanilla.LevelIndicator.getWarningValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the warning value of the level indicator.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.LevelIndicator.isVisible">
+<tt class="descname">isVisible</tt><big>(</big><big>)</big><a class="headerlink" href="#vanilla.LevelIndicator.isVisible" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a bool indicting if the object is visible or not.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.LevelIndicator.move">
+<tt class="descname">move</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#vanilla.LevelIndicator.move" title="Permalink to this definition">¶</a></dt>
+<dd><p>Move the object by <strong>x</strong> units and <strong>y</strong> units.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.LevelIndicator.resize">
+<tt class="descname">resize</tt><big>(</big><em>width</em>, <em>height</em><big>)</big><a class="headerlink" href="#vanilla.LevelIndicator.resize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change the size of the object to <strong>width</strong> and <strong>height</strong>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.LevelIndicator.set">
+<tt class="descname">set</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#vanilla.LevelIndicator.set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the value of the level indicator.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.LevelIndicator.setCriticalValue">
+<tt class="descname">setCriticalValue</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#vanilla.LevelIndicator.setCriticalValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the critical value of the level indicator.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.LevelIndicator.setMaxValue">
+<tt class="descname">setMaxValue</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#vanilla.LevelIndicator.setMaxValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the maximum of the level indicator.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.LevelIndicator.setMinValue">
+<tt class="descname">setMinValue</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#vanilla.LevelIndicator.setMinValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the minimum value of the level indicator.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.LevelIndicator.setPosSize">
+<tt class="descname">setPosSize</tt><big>(</big><em>posSize</em><big>)</big><a class="headerlink" href="#vanilla.LevelIndicator.setPosSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the postion and size of the object.</p>
+<p><strong>posSize</strong> A tuple of form <em>(left, top, width, height)</em>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.LevelIndicator.setTitle">
+<tt class="descname">setTitle</tt><big>(</big><em>title</em><big>)</big><a class="headerlink" href="#vanilla.LevelIndicator.setTitle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the control title.</p>
+<p><strong>title</strong> A string representing the title.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.LevelIndicator.setWarningValue">
+<tt class="descname">setWarningValue</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#vanilla.LevelIndicator.setWarningValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the warning value of the level indicator.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.LevelIndicator.show">
+<tt class="descname">show</tt><big>(</big><em>onOff</em><big>)</big><a class="headerlink" href="#vanilla.LevelIndicator.show" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show or hide the object.</p>
+<p><strong>onOff</strong> A boolean value representing if the object should be shown or not.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/objects/LevelIndicator.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">Vanilla 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2009, Tal Leming, Just van Rossum.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

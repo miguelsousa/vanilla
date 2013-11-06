@@ -1,0 +1,211 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>ColorWell &mdash; Vanilla 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Vanilla 0.1 documentation" href="../index.html" />
+    <link rel="next" title="ComboBox" href="ComboBox.html" />
+    <link rel="prev" title="CheckBox" href="CheckBox.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="ComboBox.html" title="ComboBox"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="CheckBox.html" title="CheckBox"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Vanilla 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-vanilla">
+<span id="colorwell"></span><h1>ColorWell<a class="headerlink" href="#module-vanilla" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="vanilla.ColorWell">
+<em class="property">class </em><tt class="descclassname">vanilla.</tt><tt class="descname">ColorWell</tt><big>(</big><em>posSize</em>, <em>callback=None</em>, <em>color=None</em><big>)</big><a class="headerlink" href="#vanilla.ColorWell" title="Permalink to this definition">¶</a></dt>
+<dd><p>A control that allows for showing and choosing a color value.</p>
+<p>ColorWell objects handle
+<a class="reference external" href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/Classes/NSColor_Class/index.html">NSColor</a>
+objects.:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">AppKit</span> <span class="kn">import</span> <span class="n">NSColor</span>
+<span class="kn">from</span> <span class="nn">vanilla</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">class</span> <span class="nc">ColorWellDemo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">Window</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="o">.</span><span class="n">colorWell</span> <span class="o">=</span> <span class="n">ColorWell</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">),</span>
+                            <span class="n">callback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">colorWellEdit</span><span class="p">,</span>
+                            <span class="n">color</span><span class="o">=</span><span class="n">NSColor</span><span class="o">.</span><span class="n">redColor</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">colorWellEdit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sender</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;color well edit!&quot;</span><span class="p">,</span> <span class="n">sender</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+
+<span class="n">ColorWellDemo</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>posSize</strong> Tuple of form <em>(left, top, width, height)</em> representing the position and size of the color well.</p>
+<p><strong>callback</strong> The method to be caled when the user selects a new color.</p>
+<p><strong>color</strong> A <em>NSColor</em> object. If <em>None</em> is given, the color shown will be white.</p>
+<dl class="method">
+<dt id="vanilla.ColorWell.enable">
+<tt class="descname">enable</tt><big>(</big><em>onOff</em><big>)</big><a class="headerlink" href="#vanilla.ColorWell.enable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable or disable the object. <strong>onOff</strong> should be a boolean.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.ColorWell.get">
+<tt class="descname">get</tt><big>(</big><big>)</big><a class="headerlink" href="#vanilla.ColorWell.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the <em>NSColor</em> object representing the current color in the color well.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.ColorWell.getNSColorWell">
+<tt class="descname">getNSColorWell</tt><big>(</big><big>)</big><a class="headerlink" href="#vanilla.ColorWell.getNSColorWell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the <em>NSColorWell</em> that this object wraps.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.ColorWell.getPosSize">
+<tt class="descname">getPosSize</tt><big>(</big><big>)</big><a class="headerlink" href="#vanilla.ColorWell.getPosSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>The position and size of the object as a tuple of form <em>(left, top, width, height)</em>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.ColorWell.isVisible">
+<tt class="descname">isVisible</tt><big>(</big><big>)</big><a class="headerlink" href="#vanilla.ColorWell.isVisible" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a bool indicting if the object is visible or not.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.ColorWell.move">
+<tt class="descname">move</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#vanilla.ColorWell.move" title="Permalink to this definition">¶</a></dt>
+<dd><p>Move the object by <strong>x</strong> units and <strong>y</strong> units.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.ColorWell.resize">
+<tt class="descname">resize</tt><big>(</big><em>width</em>, <em>height</em><big>)</big><a class="headerlink" href="#vanilla.ColorWell.resize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change the size of the object to <strong>width</strong> and <strong>height</strong>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.ColorWell.set">
+<tt class="descname">set</tt><big>(</big><em>color</em><big>)</big><a class="headerlink" href="#vanilla.ColorWell.set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the color in the color well.</p>
+<p><strong>color</strong> A <em>NSColor</em> object representing the color to be displayed in the color well.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.ColorWell.setPosSize">
+<tt class="descname">setPosSize</tt><big>(</big><em>posSize</em><big>)</big><a class="headerlink" href="#vanilla.ColorWell.setPosSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the postion and size of the object.</p>
+<p><strong>posSize</strong> A tuple of form <em>(left, top, width, height)</em>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.ColorWell.show">
+<tt class="descname">show</tt><big>(</big><em>onOff</em><big>)</big><a class="headerlink" href="#vanilla.ColorWell.show" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show or hide the object.</p>
+<p><strong>onOff</strong> A boolean value representing if the object should be shown or not.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="CheckBox.html"
+                        title="previous chapter">CheckBox</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="ComboBox.html"
+                        title="next chapter">ComboBox</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/objects/ColorWell.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="ComboBox.html" title="ComboBox"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="CheckBox.html" title="CheckBox"
+             >previous</a> |</li>
+        <li><a href="../index.html">Vanilla 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2009, Tal Leming, Just van Rossum.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

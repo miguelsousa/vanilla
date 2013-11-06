@@ -1,0 +1,249 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>SplitView &mdash; Vanilla 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Vanilla 0.1 documentation" href="../index.html" />
+    <link rel="next" title="Box" href="Box.html" />
+    <link rel="prev" title="ScrollView" href="ScrollView.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="Box.html" title="Box"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ScrollView.html" title="ScrollView"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Vanilla 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-vanilla">
+<span id="splitview"></span><h1>SplitView<a class="headerlink" href="#module-vanilla" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="vanilla.SplitView">
+<em class="property">class </em><tt class="descclassname">vanilla.</tt><tt class="descname">SplitView</tt><big>(</big><em>posSize</em>, <em>paneDescriptions</em>, <em>isVertical=True</em>, <em>dividerThickness=8</em>, <em>dividerImage='thumb'</em><big>)</big><a class="headerlink" href="#vanilla.SplitView" title="Permalink to this definition">¶</a></dt>
+<dd><p>View that can be split into two or more subviews with dividers.:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">vanilla</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">class</span> <span class="nc">SplitViewDemo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">Window</span><span class="p">((</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span> <span class="s">&quot;SplitView Demo&quot;</span><span class="p">,</span> <span class="n">minSize</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+        <span class="n">list1</span> <span class="o">=</span> <span class="n">List</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="p">[</span><span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="s">&quot;B&quot;</span><span class="p">,</span> <span class="s">&quot;C&quot;</span><span class="p">])</span>
+        <span class="n">list2</span> <span class="o">=</span> <span class="n">List</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="p">[</span><span class="s">&quot;a&quot;</span><span class="p">,</span> <span class="s">&quot;b&quot;</span><span class="p">,</span> <span class="s">&quot;c&quot;</span><span class="p">])</span>
+        <span class="n">paneDescriptors</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="nb">dict</span><span class="p">(</span><span class="n">view</span><span class="o">=</span><span class="n">list1</span><span class="p">,</span> <span class="n">identifier</span><span class="o">=</span><span class="s">&quot;pane1&quot;</span><span class="p">),</span>
+            <span class="nb">dict</span><span class="p">(</span><span class="n">view</span><span class="o">=</span><span class="n">list2</span><span class="p">,</span> <span class="n">identifier</span><span class="o">=</span><span class="s">&quot;pane2&quot;</span><span class="p">),</span>
+        <span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="o">.</span><span class="n">splitView</span> <span class="o">=</span> <span class="n">SplitView</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">0</span><span class="p">),</span> <span class="n">paneDescriptors</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
+
+<span class="n">SplitViewDemo</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The wrapped object is an <a class="reference external" href="http://www.brockerhoff.net/src/rbs.html">RBSplitView</a> object.</p>
+<p><strong>posSize</strong> Tuple of form <em>(left, top, width, height)</em> representing
+the position and size of the split view.</p>
+<p><strong>paneDescriptions</strong> An ordered list of dictionaries describing the
+subviews, or &#8220;panes&#8221;. Those dictionaries can have the following keys:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="82%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><em>view</em></td>
+<td>A view, either a Vanilla object or a NSView. Required.</td>
+</tr>
+<tr class="row-even"><td><em>&#8220;identifier&#8221;</em></td>
+<td>A string identifying the pane. Required.</td>
+</tr>
+<tr class="row-odd"><td><em>&#8220;size&#8221;</em></td>
+<td>The initial size of the pane. Optional.</td>
+</tr>
+<tr class="row-even"><td><em>&#8220;minSize&#8221;</em></td>
+<td>The minimum size of the pane. Optional. The default is 1.</td>
+</tr>
+<tr class="row-odd"><td><em>&#8220;maxSize&#8221;</em></td>
+<td>The maximum size of the pane. Optional. The default is no maximum size.</td>
+</tr>
+<tr class="row-even"><td><em>&#8220;canCollapse&#8221;</em></td>
+<td>Boolean indicating if the pane can collapse. Optional. The default is True.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>isVertical</strong> Boolean representing if the split view is vertical.
+Default is <em>True</em>.</p>
+<dl class="method">
+<dt id="vanilla.SplitView.enable">
+<tt class="descname">enable</tt><big>(</big><em>onOff</em><big>)</big><a class="headerlink" href="#vanilla.SplitView.enable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable or disable the object. <strong>onOff</strong> should be a boolean.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.SplitView.getPosSize">
+<tt class="descname">getPosSize</tt><big>(</big><big>)</big><a class="headerlink" href="#vanilla.SplitView.getPosSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>The position and size of the object as a tuple of form <em>(left, top, width, height)</em>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.SplitView.getRBSplitView">
+<tt class="descname">getRBSplitView</tt><big>(</big><big>)</big><a class="headerlink" href="#vanilla.SplitView.getRBSplitView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the <em>RBSplitView</em> that this object wraps.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.SplitView.isPaneVisible">
+<tt class="descname">isPaneVisible</tt><big>(</big><em>identifier</em><big>)</big><a class="headerlink" href="#vanilla.SplitView.isPaneVisible" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a boolean indicating if the pane with <strong>identifier</strong>
+is visible or not.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.SplitView.isVisible">
+<tt class="descname">isVisible</tt><big>(</big><big>)</big><a class="headerlink" href="#vanilla.SplitView.isVisible" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a bool indicting if the object is visible or not.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.SplitView.move">
+<tt class="descname">move</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#vanilla.SplitView.move" title="Permalink to this definition">¶</a></dt>
+<dd><p>Move the object by <strong>x</strong> units and <strong>y</strong> units.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.SplitView.resize">
+<tt class="descname">resize</tt><big>(</big><em>width</em>, <em>height</em><big>)</big><a class="headerlink" href="#vanilla.SplitView.resize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change the size of the object to <strong>width</strong> and <strong>height</strong>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.SplitView.setPosSize">
+<tt class="descname">setPosSize</tt><big>(</big><em>posSize</em><big>)</big><a class="headerlink" href="#vanilla.SplitView.setPosSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the postion and size of the object.</p>
+<p><strong>posSize</strong> A tuple of form <em>(left, top, width, height)</em>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.SplitView.show">
+<tt class="descname">show</tt><big>(</big><em>onOff</em><big>)</big><a class="headerlink" href="#vanilla.SplitView.show" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show or hide the object.</p>
+<p><strong>onOff</strong> A boolean value representing if the object should be shown or not.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.SplitView.showPane">
+<tt class="descname">showPane</tt><big>(</big><em>identifier</em>, <em>onOff</em>, <em>animate=True</em><big>)</big><a class="headerlink" href="#vanilla.SplitView.showPane" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the visibility of the pane with <strong>identifier</strong>.
+<strong>onOff* should be a boolean indicating the desired
+visibility of the pane. If **animate</strong> is True,
+the pane will expand or collapse with and animation.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.SplitView.togglePane">
+<tt class="descname">togglePane</tt><big>(</big><em>identifier</em>, <em>animate=True</em><big>)</big><a class="headerlink" href="#vanilla.SplitView.togglePane" title="Permalink to this definition">¶</a></dt>
+<dd><p>Toggle the visibility of the pane with <strong>identifier</strong>.
+If <strong>animate</strong> is True, the pane will expand or collapse
+with and animation.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="ScrollView.html"
+                        title="previous chapter">ScrollView</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="Box.html"
+                        title="next chapter">Box</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/objects/SplitView.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="Box.html" title="Box"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ScrollView.html" title="ScrollView"
+             >previous</a> |</li>
+        <li><a href="../index.html">Vanilla 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2009, Tal Leming, Just van Rossum.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

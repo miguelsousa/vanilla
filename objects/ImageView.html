@@ -1,0 +1,246 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>ImageView &mdash; Vanilla 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Vanilla 0.1 documentation" href="../index.html" />
+    <link rel="next" title="Button" href="Button.html" />
+    <link rel="prev" title="List" href="List.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="Button.html" title="Button"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="List.html" title="List"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Vanilla 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-vanilla">
+<span id="imageview"></span><h1>ImageView<a class="headerlink" href="#module-vanilla" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="vanilla.ImageView">
+<em class="property">class </em><tt class="descclassname">vanilla.</tt><tt class="descname">ImageView</tt><big>(</big><em>posSize</em>, <em>horizontalAlignment='center'</em>, <em>verticalAlignment='center'</em>, <em>scale='proportional'</em><big>)</big><a class="headerlink" href="#vanilla.ImageView" title="Permalink to this definition">¶</a></dt>
+<dd><p>A view that displays an image.</p>
+<p><strong>posSize</strong> Tuple of form <em>(left, top, width, height)</em> representing
+the position and size of the view.</p>
+<p><strong>horizontalAlignment</strong> A string representing the desired horizontal
+alignment of the image in the view. The options are:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="34%" />
+<col width="66%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&#8220;left&#8221;</td>
+<td>Image is aligned left.</td>
+</tr>
+<tr class="row-even"><td>&#8220;right&#8221;</td>
+<td>Image is aligned right.</td>
+</tr>
+<tr class="row-odd"><td>&#8220;center&#8221;</td>
+<td>Image is centered.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>verticalAlignment</strong> A string representing the desired vertical alignment
+of the image in the view. The options are:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%" />
+<col width="67%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&#8220;top&#8221;</td>
+<td>Image is aligned top.</td>
+</tr>
+<tr class="row-even"><td>&#8220;bottom&#8221;</td>
+<td>Image is aligned bottom.</td>
+</tr>
+<tr class="row-odd"><td>&#8220;center&#8221;</td>
+<td>Image is centered.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>scale</strong> A string representing the desired scale style of the image in the
+view. The options are:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="74%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&#8220;porportional&#8221;</td>
+<td>Proportionally scale the image to fit in the
+view if it is larger than the view.</td>
+</tr>
+<tr class="row-even"><td>&#8220;fit&#8221;</td>
+<td>Distort the proportions of the image until
+it fits exactly in the view.</td>
+</tr>
+<tr class="row-odd"><td>&#8220;none&#8221;</td>
+<td>Do not scale the image.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="vanilla.ImageView.enable">
+<tt class="descname">enable</tt><big>(</big><em>onOff</em><big>)</big><a class="headerlink" href="#vanilla.ImageView.enable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable or disable the object. <strong>onOff</strong> should be a boolean.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.ImageView.getNSImageView">
+<tt class="descname">getNSImageView</tt><big>(</big><big>)</big><a class="headerlink" href="#vanilla.ImageView.getNSImageView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the <em>NSImageView</em> that this object wraps.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.ImageView.getPosSize">
+<tt class="descname">getPosSize</tt><big>(</big><big>)</big><a class="headerlink" href="#vanilla.ImageView.getPosSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>The position and size of the object as a tuple of form <em>(left, top, width, height)</em>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.ImageView.isVisible">
+<tt class="descname">isVisible</tt><big>(</big><big>)</big><a class="headerlink" href="#vanilla.ImageView.isVisible" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a bool indicting if the object is visible or not.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.ImageView.move">
+<tt class="descname">move</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a class="headerlink" href="#vanilla.ImageView.move" title="Permalink to this definition">¶</a></dt>
+<dd><p>Move the object by <strong>x</strong> units and <strong>y</strong> units.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.ImageView.resize">
+<tt class="descname">resize</tt><big>(</big><em>width</em>, <em>height</em><big>)</big><a class="headerlink" href="#vanilla.ImageView.resize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change the size of the object to <strong>width</strong> and <strong>height</strong>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.ImageView.setImage">
+<tt class="descname">setImage</tt><big>(</big><em>imagePath=None</em>, <em>imageNamed=None</em>, <em>imageObject=None</em><big>)</big><a class="headerlink" href="#vanilla.ImageView.setImage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the image in the view.</p>
+<p><strong>imagePath</strong> A file path to an image.</p>
+<p><strong>imageNamed</strong> The name of an image already load as a <em>NSImage</em>
+by the application.</p>
+<p><strong>imageObject</strong> A <em>NSImage</em> object.</p>
+<p><em>Only one of imagePath, imageNamed, imageObject should be set.</em></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.ImageView.setPosSize">
+<tt class="descname">setPosSize</tt><big>(</big><em>posSize</em><big>)</big><a class="headerlink" href="#vanilla.ImageView.setPosSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the postion and size of the object.</p>
+<p><strong>posSize</strong> A tuple of form <em>(left, top, width, height)</em>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="vanilla.ImageView.show">
+<tt class="descname">show</tt><big>(</big><em>onOff</em><big>)</big><a class="headerlink" href="#vanilla.ImageView.show" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show or hide the object.</p>
+<p><strong>onOff</strong> A boolean value representing if the object should be shown or not.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="List.html"
+                        title="previous chapter">List</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="Button.html"
+                        title="next chapter">Button</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/objects/ImageView.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="Button.html" title="Button"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="List.html" title="List"
+             >previous</a> |</li>
+        <li><a href="../index.html">Vanilla 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2009, Tal Leming, Just van Rossum.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>
